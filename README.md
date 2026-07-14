@@ -1,9 +1,9 @@
 # Skin Lesion Classification: Melanoma vs Nevus
 
 Deep learning pipeline for classifying dermoscopy images as **melanoma (MEL)** or **melanocytic nevus (NV)**, using a balanced subset of the ISIC 2018 challenge dataset.
-**Authors:** Sergi Cases ([sergi.cases01@estudiant.upf.edu](mailto:sergi.cases01@estudiant.upf.edu)), Martí Pascual ([marti.pascual01@estudiant.upf.edu](mailto:marti.pascual01@estudiant.upf.edu))
 
-![Class Distribution](assets/output.png)
+
+![Class Distribution](images/output.png)
 
 ## Overview
 
@@ -29,15 +29,15 @@ Five models are trained and compared on the validation set, then the best one is
 
 The VGG-16 transfer learning model (best on validation) was evaluated on the **test set**, achieving **86.2% accuracy**, with balanced precision/recall/F1 of 0.86 for both classes (683 MEL, 683 NV).
 
-Residual connections and transfer learning both improved over the baseline; adding data augmentation to the residual model unexpectedly reduced accuracy — likely because the added noise outweighed the regularization benefit on this dataset size:
+Residual connections and transfer learning both improved over the baseline. However, adding data augmentation to the residual model unexpectedly reduced accuracy, likely because the added noise outweighed the regularization benefit on this dataset size:
 
-![Residual CNN + Augmentation training curves](assets/residual_aug_training_curves.png)
+![Residual CNN + Augmentation training curves](images/output3.png)
 
 See the [report](Report.pdf) for full analysis, confusion matrices, and discussion.
 
 ### Sample Test Predictions (VGG-16 Transfer Learning)
 
-![Test Set Predictions](assets/output6.png)
+![Test Set Predictions](images/output6.png)
 
 Green titles indicate correct predictions, red indicates incorrect ones. Most misclassifications involve visually ambiguous lesions.
 
