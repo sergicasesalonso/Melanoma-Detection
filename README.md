@@ -34,7 +34,9 @@ Residual connections and transfer learning both improved over the baseline. Howe
 See the [report](Report.pdf) for full analysis, confusion matrices, and discussion.
 
 ### Test Set Predictions (VGG-16 Transfer Learning)
-After evaluating our best model in the test set, we got the following predictions
+
+After evaluating our best model in the test set, we got the following predictions:
+
 ![Test Set Predictions](images/output6.png)
 
 Green titles indicate correct predictions, red indicates incorrect ones. Most misclassifications involve visually ambiguous lesions.
