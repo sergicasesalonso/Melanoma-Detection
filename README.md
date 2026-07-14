@@ -3,8 +3,6 @@
 Deep learning pipeline for classifying dermoscopy images as **melanoma (MEL)** or **melanocytic nevus (NV)**, using a balanced subset of the ISIC 2018 challenge dataset.
 
 
-![Class Distribution](images/output.png)
-
 ## Overview
 
 Five models are trained and compared on the validation set, then the best one is evaluated on the held-out test set:
@@ -31,7 +29,7 @@ The VGG-16 transfer learning model (best on validation) was evaluated on the **t
 
 Residual connections and transfer learning both improved over the baseline. However, adding data augmentation to the residual model unexpectedly reduced accuracy, likely because the added noise outweighed the regularization benefit on this dataset size:
 
-![Residual CNN + Augmentation training curves](images/output3.png)
+![Residual CNN + Augmentation training curves](images/output2.png)
 
 See the [report](Report.pdf) for full analysis, confusion matrices, and discussion.
 
