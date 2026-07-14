@@ -1,20 +1,19 @@
 # Skin Lesion Classification: Melanoma vs Nevus
 
-Deep learning pipeline for classifying dermoscopy images as **melanoma (MEL)** or **melanocytic nevus (NV)**, using a balanced subset of the ISIC 2018 challenge dataset. Built for the Applied ML course assignment.
-
+Deep learning pipeline for classifying dermoscopy images as **melanoma (MEL)** or **melanocytic nevus (NV)**, using a balanced subset of the ISIC 2018 challenge dataset.
 **Authors:** Sergi Cases ([sergi.cases01@estudiant.upf.edu](mailto:sergi.cases01@estudiant.upf.edu)), Martí Pascual ([marti.pascual01@estudiant.upf.edu](mailto:marti.pascual01@estudiant.upf.edu))
 
-![Class Distribution](assets/class_distribution.png)
+![Class Distribution](assets/output.png)
 
 ## Overview
 
 Five models are trained and compared on the validation set, then the best one is evaluated on the held-out test set:
 
-1. **Baseline CNN** — a plain 3-block convolutional network, no regularization
-2. **CNN + Batch Normalization** — batch norm after each conv layer + dropout
-3. **CNN + Residual Connections** — residual blocks with skip connections (He et al., 2016)
-4. **Residual CNN + Data Augmentation** — random flips, rotation, and color jitter
-5. **Transfer Learning (VGG-16)** — frozen ImageNet-pretrained VGG-16 as a feature extractor, with an MLP classifier on top
+1. **Baseline CNN**: a plain 3-block convolutional network with no regularization
+2. **CNN + Batch Normalization** : batch norm after each conv layer and dropout
+3. **CNN + Residual Connections** : residual blocks with skip connections
+4. **Residual CNN + Data Augmentation** : random flips, rotation, and color jitter
+5. **Transfer Learning (VGG-16)** : frozen ImageNet-pretrained VGG-16 as a feature extractor, with an MLP classifier on top
 
 ## Results
 
@@ -26,7 +25,7 @@ Five models are trained and compared on the validation set, then the best one is
 | 4. Residual CNN + Data Augmentation | 0.8347 |
 | **5. Transfer Learning (VGG-16)** | **0.8626** |
 
-![Validation Accuracy — All Models](assets/validation_accuracy_comparison.png)
+![Validation Accuracy — All Models](images/output5.png)
 
 The VGG-16 transfer learning model (best on validation) was evaluated on the **test set**, achieving **86.2% accuracy**, with balanced precision/recall/F1 of 0.86 for both classes (683 MEL, 683 NV).
 
@@ -38,31 +37,13 @@ See the [report](Report.pdf) for full analysis, confusion matrices, and discussi
 
 ### Sample Test Predictions (VGG-16 Transfer Learning)
 
-![Test Set Predictions](assets/test_predictions_vgg16.png)
+![Test Set Predictions](assets/output6.png)
 
 Green titles indicate correct predictions, red indicates incorrect ones. Most misclassifications involve visually ambiguous lesions.
 
 ## Dataset
 
 A processed, balanced subset of the [ISIC 2018 challenge dataset](https://arxiv.org/abs/1902.03368) (Tschandl et al., 2018; Codella et al., 2019), simplified to two classes: `MEL` (melanoma) and `NV` (nevus).
-
-Expected directory layout after extracting the data archive:
-
-```
-a5_data_new/
-├── train/
-│   ├── MEL/
-│   └── NV/
-└── val/
-    ├── MEL/
-    └── NV/
-a5_data_test/
-└── test/
-    ├── MEL/
-    └── NV/
-```
-
-> Note: `ImageFolder` assigns classes alphabetically, so `MEL = 0` and `NV = 1`.
 
 The dataset is not included in this repository due to size; download it from the course page and extract it into the project root before running the notebook.
 
@@ -71,12 +52,8 @@ The dataset is not included in this repository due to size; download it from the
 ```
 .
 ├── Notebook.ipynb      # Full pipeline: data loading, models, training, evaluation
-├── Report.pdf           # Technical report (4-page format)
-├── assets/              # Images used in this README
-│   ├── class_distribution.png
-│   ├── validation_accuracy_comparison.png
-│   ├── residual_aug_training_curves.png
-│   └── test_predictions_vgg16.png
+├── Report.pdf           # Technical report 
+├── images/              # Images used in this README
 └── README.md
 ```
 
@@ -106,7 +83,6 @@ pip install torch torchvision numpy matplotlib seaborn scikit-learn pillow
    - Produce comparison plots, training curves, and confusion matrices
    - Evaluate the best model on the test set (once test data with labels is available)
 
-Training curves, comparison plots, and prediction samples are generated and saved automatically during execution.
 
 ## Method Notes
 
@@ -116,7 +92,7 @@ Training curves, comparison plots, and prediction samples are generated and save
 
 ## Limitations & Ethical Considerations
 
-The task is a 2-class simplification of a real, multi-class clinical problem, uses relatively low-resolution (128×128) images for the custom CNNs, and is trained on data sourced mainly from Austrian and Australian hospitals — generalization to other skin tones and imaging conditions is not guaranteed. Because missing a melanoma is more costly than a false alarm, accuracy alone is not an ideal metric; melanoma recall (86.09% for the best model) would be the more clinically relevant number to optimize. See `Report.pdf` for the full discussion — any such system should be used strictly as a decision-support tool under medical supervision, not as a standalone diagnostic.
+The task is a 2-class simplification of a real, multi-class clinical problem, uses low-resolution (128×128) images for the custom CNNs, and is trained on data sourced mainly from Austrian and Australian hospitals. Generalization to other skin tones and imaging conditions is not guaranteed. Because missing a melanoma is more costly than a false alarm, accuracy alone is not an ideal metric; melanoma recall (86.09% for the best model) would be the more clinically relevant number to optimize. See `Report.pdf` for the full discussion, since any such system should be used strictly as a decision-support tool under medical supervision, not as a standalone diagnostic.
 
 ## References
 
