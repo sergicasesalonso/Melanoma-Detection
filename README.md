@@ -1,6 +1,6 @@
 # Skin Lesion Classification: Melanoma vs Nevus
 
-Deep learning pipeline for classifying dermoscopy images as **melanoma (MEL)** or **melanocytic nevus (NV)**, using a balanced subset of the ISIC 2018 challenge dataset.
+We developed a deep learning pipeline for classifying dermoscopy images as **melanoma (MEL)** or **melanocytic nevus (NV)**, using a balanced subset of the ISIC 2018 challenge dataset.
 
 
 ## Overview
@@ -33,8 +33,8 @@ Residual connections and transfer learning both improved over the baseline. Howe
 
 See the [report](Report.pdf) for full analysis, confusion matrices, and discussion.
 
-### Sample Test Predictions (VGG-16 Transfer Learning)
-
+### Test Set Predictions (VGG-16 Transfer Learning)
+After evaluating our best model in the test set, we got the following predictions
 ![Test Set Predictions](images/output6.png)
 
 Green titles indicate correct predictions, red indicates incorrect ones. Most misclassifications involve visually ambiguous lesions.
